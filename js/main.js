@@ -216,8 +216,12 @@ function checkWin() {
     console.log("im checking")
     if ((squareOne == "playerOne" && squareTwo == "playerOne" && squareThree == "playerOne") || (squareOne == "playerTwo" && squareTwo == "playerTwo" && squareThree == "playerTwo") || (squareFour == "playerOne" && squareFive == "playerOne" && squareSix == "playerOne") || (squareFour == "playerTwo" && squareFive == "playerTwo" && squareSix == "playerTwo") || (squareSeven == "playerOne" && squareEight == "playerOne" && squareNine == "playerOne") || (squareSeven == "playerTwo" && squareEight == "playerTwo" && squareNine == "playerTwo")) {
         console.log("winner")
-    } else if ((squareOne == "playerOne" && squareFour == "playerOne" && squareSeven == "playerOne") || (squareOne == "playerTwo" && squareFour == "playerTwo" && squareSeven == "playerTwo")) { } else {
-        console.log("somethings broken")
+    } else if ((squareOne == "playerOne" && squareFour == "playerOne" && squareSeven == "playerOne") || (squareOne == "playerTwo" && squareFour == "playerTwo" && squareSeven == "playerTwo") || (squareTwo == "playerOne" && squareFive == "playerOne" && squareEight == "playerOne") || (squareTwo == "playerTwo" && squareFive == "playerTwo" && squareEight == "playerTwo") || (squareThree == "playerOne" && squareSix == "playerOne" && squareNine == "playerOne") || (squareThree == "playerTwo" && squareSix == "playerTwo" && squareNine == "playerTwo")) {
+        console.log("winner")
+    } else if ((squareOne == "playerOne" && squareFive == "playerOne" && squareNine == "playerOne") || (squareOne == "playerTwo" && squareFive == "playerTwo" && squareNine == "playerTwo") || (squareThree == "playerOne" && squareFive == "playerOne" && squareSeven == "playerOne") || (squareThree == "playerTwo" && squareFive == "playerTwo" && squareSeven == "playerTwo")) {
+        console.log("winner")
+    } else {
+        console.log("No Winner Yet")
     }
 
 }
