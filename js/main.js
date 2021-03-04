@@ -333,6 +333,15 @@ function checkWin() {
 document.querySelector('button').addEventListener('click', playAgain);
 
 function playAgain() {
+  squareOne = '';
+  squareTwo = '';
+  squareThree = '';
+  squareFour = '';
+  squareFive = '';
+  squareSix = '';
+  squareSeven = '';
+  squareEight = '';
+  squareNine = '';
   winner = false;
   whoWon = '';
   document.querySelector('h2').innerText = `${whoWon}`;
