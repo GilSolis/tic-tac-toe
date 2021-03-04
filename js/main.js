@@ -337,6 +337,15 @@ function playAgain() {
     winner = false
     whoWon = ''
     document.querySelector('h2').innerText = `${whoWon}`
+    squareOne = '';
+    squareTwo = '';
+    squareThree = '';
+    squareFour = '';
+    squareFive = '';
+    squareSix = '';
+    squareSeven = '';
+    squareEight = '';
+    squareNine = '';
 
     let removeTaken = Array.from(document.querySelectorAll('.taken'))
     removeTaken.forEach((arrayElement, index) => {
