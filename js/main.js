@@ -1,16 +1,16 @@
-// let player1 = true;
-// let player2 = false;
-// let squareOne = '';
-// let squareTwo = '';
-// let squareThree = '';
-// let squareFour = '';
-// let squareFive = '';
-// let squareSix = '';
-// let squareSeven = '';
-// let squareEight = '';
-// let squareNine = '';
-// let winner = false;
-// let whoWon = '';
+let player1 = true;
+let player2 = false;
+let squareOne = '';
+let squareTwo = '';
+let squareThree = '';
+let squareFour = '';
+let squareFive = '';
+let squareSix = '';
+let squareSeven = '';
+let squareEight = '';
+let squareNine = '';
+let winner = false;
+let whoWon = '';
 
 document.getElementById('s1').addEventListener('click', function (event) {
   if (winner === true) {
@@ -333,6 +333,15 @@ function checkWin() {
 document.querySelector('button').addEventListener('click', playAgain);
 
 function playAgain() {
+  squareOne = '';
+  squareTwo = '';
+  squareThree = '';
+  squareFour = '';
+  squareFive = '';
+  squareSix = '';
+  squareSeven = '';
+  squareEight = '';
+  squareNine = '';
   winner = false;
   whoWon = '';
   document.querySelector('h2').innerText = `${whoWon}`;
