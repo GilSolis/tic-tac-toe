@@ -6,15 +6,16 @@ class Square {
     this.token = null;
   }
 
-  get owner() {
-    if (this.token === null) {
-      return null;
-    } else {
-      return this.token.owner;
-    }
+  get htmlSquare() {
+    return document.getElementById(this.id);
   }
 
-  // draw SVG space goes here if we decide to go with it
+  renderHTMLSquare() {
+    const square = document.createElement('div');
+    square.setAttribute('class', 'square');
+    square.setAttribute('id', this.id);
+    document.querySelector('#gameBoard').appendChild(square);
+  }
 
   /**
    * Updates space to reflect a token has been dropped into it.

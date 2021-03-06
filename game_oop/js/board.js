@@ -11,17 +11,38 @@ class Board {
 
     for (let x = 0; x < this.columns; x++) {
       const col = [];
-
       for (let y = 0; y < this.rows; y++) {
-        const square = new Square(x, y); //still working on it
+        const square = new Square(x, y);
         col.push(square);
       }
-
       squares.push(col);
     }
-
     return squares;
   }
 
-  // svgs go here if we feel like it
+  // create game board using the spaces array of objects
+  renderHTMLBoard() {
+    for (let column of this.squares) {
+      for (let square of column) {
+        square.renderHTMLSquare();
+      }
+    }
+  }
+
+  /**
+   * Get an individual space object
+   * @param {string} squareID - ID of the space requested
+   * @return {object} targetSpace - the space to be marked
+   */
+  findSquare(squareID) {
+    let targetSquare;
+    for (let column of this.squares) {
+      for (let square of column) {
+        if (square.id == squareID) {
+          targetSquare = square;
+        }
+      }
+    }
+    return targetSquare;
+  }
 }

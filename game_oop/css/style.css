@@ -3,12 +3,24 @@
   padding: 0;
 }
 
-.square {
+/* .square {
   height: 50px;
   width: 50px;
   background-color: rgb(204, 201, 201);
   display: inline-block;
   font-size: 2rem;
+} */
+
+.square {
+  background-color: rgb(128, 123, 123);
+  height: 50px;
+  width: 50px;
+}
+div {
+  float: left;
+}
+div:nth-child(3n + 1) {
+  clear: left;
 }
 
 h1,
