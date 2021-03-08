@@ -12,20 +12,20 @@ class Game {
     return this.players.find((player) => player.active);
   }
 
-  get ready() {
-    return this.ready;
-  }
+  // get ready() {
+  //   return this.ready;
+  // }
 
-  set ready(val) {
-    this.ready = val;
-  }
+  // // set ready(val) {
+  //   this.ready = val;
+  // }
 
   // creates 2 players; chooses randomly who starts
   createPlayer() {
     const playerActive = Math.floor(Math.random() * 2) === 0;
-    // let player2; (might not need it)
-    player2 = new Player('Blue', 2, '#3688C3', !playerActive);
-    player1 = new Player('Red', 1, '#FF0000', playerActive);
+    let player2 = new Player('Blue', 'p2', '#3688C3', !playerActive);
+    let player1 = new Player('Red', 'p1', '#FF0000', playerActive);
+    return [player1, player2];
   }
 
   // adjusts HTML class active for active player
@@ -33,45 +33,24 @@ class Game {
     this.ready = true;
     const activePlayer = this.activePlayer;
     const inactivePlayer = this.players.find((player) => player.active);
-    document.getElementById(activePlayer.id).classList.add('active');
-    document.getElementById(inactivePlayer.id).classList.remove('active');
+    // document.getElementById(activePlayer.id).classList.add('active');
+    // document.getElementById(inactivePlayer.id).classList.remove('active');
   }
 
   // switches player after each click
   switchPlayer() {
+    console.log('what string');
     for (let player in this.players) {
       player.active = player.active === true ? false : true;
     }
   }
 
-  // winner winner chicken dinner
-  gameOver(message, result) {
-    const finish = document.getElementById('finish');
-    const winnerTally = document.querySelector(
-      `.${this.activePlayer.id}-wins span.win-num`
-    );
-    finish.classList.remove(
-      'screen-win-tie',
-      'screen-win-one',
-      'screen-win-two'
-    );
-    let screenStyle;
-    document.getElementById('board').style.display = 'none';
-
-    if (result === 'draw') {
-      screenStyle = 'screen-win-tie';
-      finish.style.backgroundColor = '#54D17A';
-    } else {
-      screenStyle =
-        this.activePlayer.id == 'player1' ? 'screen-win-one' : 'screen-win-two';
-      finish.style.backgroundColor = this.activePlayer.color;
-      winnerTally.textContent = parseInt(winnerTally.textContent) + 1;
-    }
-
-    finish.style.display = 'block';
-    finish.classList.add(screenStyle);
-    document.querySelector('p.message').textContent = message;
-  }
+  // to tally or not to tally
+  // winnerTally(message, result) {
+  //   const winnerTally = document.querySelector(
+  //     `.${this.activePlayer.id}-wins span.win-num`
+  //   );
+  // }
 
   // after 9 turns && no winner, then call a draw
   checkDraw() {
@@ -95,6 +74,7 @@ class Game {
           this.board.squares[x + 1][y].owner === owner &&
           this.board.squares[x + 2][y] === owner
         ) {
+          console.log('vertical win');
           win = true;
           return win;
         }
@@ -109,6 +89,7 @@ class Game {
           this.board.squares[x][y + 1].owner === owner &&
           this.board.squares[x][y + 2] === owner
         ) {
+          console.log('horizontal win');
           win = true;
           return win;
         }
@@ -116,69 +97,73 @@ class Game {
     }
 
     // diagonal wins
-    if (
-      this.board.spaces[0][0].owner === owner &&
-      this.board.spaces[1][1].owner === owner &&
-      this.board.spaces[2][2].owner === owner
-    ) {
-      win = true;
-      return win;
-    }
-    if (
-      this.board.spaces[0][2].owner === owner &&
-      this.board.spaces[1][1].owner === owner &&
-      this.board.spaces[2][0].owner === owner
-    ) {
-      win = true;
-      return win;
-    }
+    // if (
+    //   this.board.squares[0][0].owner === owner &&
+    //   this.board.squares[1][1].owner === owner &&
+    //   this.board.squares[2][2].owner === owner
+    // ) {
+    //   console.log('diagonal 1 win');
+    //   win = true;
+    //   return win;
+    // }
+    // if (
+    //   this.board.squares[0][2].owner === owner &&
+    //   this.board.squares[1][1].owner === owner &&
+    //   this.board.squares[2][0].owner === owner
+    // ) {
+    //   console.log('diagonal 2 win');
+    //   win = true;
+    //   return win;
+    // }
     return win;
   }
 
-  updateGameState(token, targetSpace) {
+  updateGameState(color, targetSquare) {
     this.turns++;
 
     //mark the space and establish the token has been played
-    targetSpace.mark(token);
-    token.played = true;
+    targetSquare.mark(color);
+    color.played = true;
+
     //check for a win or draw
-    const gameIsOver = this.checkForWinner(targetSpace);
-    const draw = this.checkForDraw();
-    if (gameIsOver) {
+    const gameOver = this.checkWin(targetSquare);
+    const draw = this.checkDraw();
+    if (gameOver) {
       this.win = true;
-      this.gameOver(`${this.activePlayer.name} wins!`, 'win');
+      document.querySelector(
+        'h2'
+      ).innerHTML = `${this.activePlayer.name} wins!`;
     } else if (draw) {
-      this.gameOver("It's a draw!", 'draw');
+      document.querySelector('h2').innerHTML = `${"It's a draw!"}`;
     } else {
-      this.switchPlayers();
+      this.switchPlayer();
       this.playerTurn();
     }
   }
 
+  // color square with player assigned color
   handleClick(e) {
     if (this.ready) {
-      if (
-        e.target.classList.contains('box-filled-1') ||
-        e.target.classList.contains('box-filled-2')
-      ) {
+      if (e.target.classList.contains('taken')) {
+        return;
+      } else if (!e.target.classList.contains('square')) {
         return;
       }
-      if (!e.target.classList.contains('box')) {
-        return;
-      }
+
       //make game state false while game is updated
       this.ready = false;
 
-      //mark the targeted DOM space
-      const fillClass =
-        this.activePlayer.id == 'player1' ? 'box-filled-1' : 'box-filled-2';
-      e.target.classList.add(fillClass);
+      // mark the targeted DOM space
+      // const fillClass =
+      //   this.activePlayer.id == 'player1' ? 'box-filled-1' : 'box-filled-2';
+
+      e.target.classList.add('taken');
 
       //update the game state
-      const spaceId = e.target.id;
-      const token = this.activePlayer.activeToken;
-      const targetSpace = this.board.findSpace(spaceId);
-      this.updateGameState(token, targetSpace);
+      const squareID = e.target.id;
+      const color = this.activePlayer.activeColor;
+      const targetSquare = this.board.findSquare(squareID);
+      this.updateGameState(color, targetSquare);
     }
   }
 

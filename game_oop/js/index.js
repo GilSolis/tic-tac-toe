@@ -4,6 +4,10 @@ document.getElementById('start').addEventListener('click', function () {
   game.startGame();
 });
 
-document.addEventListener('click', function () {
-  //gamefunctiontobe();
+document.querySelector('section.gameBoard').addEventListener('click', (e) => {
+  game.handleClick(e);
+});
+
+document.getElementById('restart').addEventListener('click', function () {
+  game.startGame();
 });

@@ -3,25 +3,33 @@ class Square {
     this.x = x;
     this.y = y;
     this.id = `square-${x}-${y}`;
-    this.token = null;
+    this.color = null;
   }
 
   get htmlSquare() {
     return document.getElementById(this.id);
   }
 
+  get owner() {
+    if (this.color === null) {
+      return null;
+    } else {
+      return this.color.owner.name;
+    }
+  }
+
   renderHTMLSquare() {
     const square = document.createElement('div');
     square.setAttribute('class', 'square');
     square.setAttribute('id', this.id);
-    document.querySelector('#gameBoard').appendChild(square);
+    document.querySelector('section.gameBoard').appendChild(square);
   }
 
   /**
    * Updates space to reflect a token has been dropped into it.
-   * @param {Object} token - The dropped token
+   * @param {Object} color - The dropped token
    */
-  mark(token) {
-    this.token = token;
+  mark(color) {
+    this.color = color;
   }
 }

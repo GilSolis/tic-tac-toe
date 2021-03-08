@@ -1,3 +1,4 @@
+//
 class Board {
   constructor() {
     this.rows = 3;
