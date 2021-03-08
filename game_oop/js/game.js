@@ -23,7 +23,7 @@ class Game {
   // creates 2 players; chooses randomly who starts
   createPlayer() {
     const playerActive = Math.floor(Math.random() * 2) === 0;
-    let player2 = new Player('Blue', 'p2', '#3688C3', !playerActive);
+    let player2 = new Player('Blue', 'p2', '#0066FF', !playerActive);
     let player1 = new Player('Red', 'p1', '#FF0000', playerActive);
     return [player1, player2];
   }
@@ -31,16 +31,15 @@ class Game {
   // adjusts HTML class active for active player
   playerTurn() {
     this.ready = true;
+    const inactivePlayer = this.players.find((player) => !player.active);
     const activePlayer = this.activePlayer;
-    const inactivePlayer = this.players.find((player) => player.active);
-    // document.getElementById(activePlayer.id).classList.add('active');
-    // document.getElementById(inactivePlayer.id).classList.remove('active');
+    document.getElementById(inactivePlayer.id).classList.remove('active');
+    document.getElementById(activePlayer.id).classList.add('active');
   }
 
   // switches player after each click
   switchPlayer() {
-    console.log('what string');
-    for (let player in this.players) {
+    for (let player of this.players) {
       player.active = player.active === true ? false : true;
     }
   }
@@ -63,7 +62,7 @@ class Game {
 
   // check vertical, horizontal, and diagonal for wins
   checkWin(target) {
-    const owner = target.owner; //which owner?
+    const owner = target.owner;
     let win = false;
 
     // vertical wins
@@ -96,7 +95,7 @@ class Game {
       }
     }
 
-    // diagonal wins
+    // //diagonal wins
     // if (
     //   this.board.squares[0][0].owner === owner &&
     //   this.board.squares[1][1].owner === owner &&
@@ -121,9 +120,9 @@ class Game {
   updateGameState(color, targetSquare) {
     this.turns++;
 
-    //mark the space and establish the token has been played
-    targetSquare.mark(color);
-    color.played = true;
+    // //mark the space and establish the token has been played
+    // targetSquare.mark(color);
+    // color.played = true;
 
     //check for a win or draw
     const gameOver = this.checkWin(targetSquare);
@@ -154,8 +153,9 @@ class Game {
       this.ready = false;
 
       // mark the targeted DOM space
-      // const fillClass =
-      //   this.activePlayer.id == 'player1' ? 'box-filled-1' : 'box-filled-2';
+      this.activePlayer.id == 'p1'
+        ? e.target.classList.add('red')
+        : e.target.classList.add('blue');
 
       e.target.classList.add('taken');
 
