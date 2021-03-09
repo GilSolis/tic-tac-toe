@@ -22,9 +22,9 @@ h1,
 }
 
 .playerOne {
-  background-color: red;
+  background-color: #ff0000;
 }
 
 .playerTwo {
-  background-color: blue;
+  background-color: #0000ff;
 }

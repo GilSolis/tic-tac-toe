@@ -62,12 +62,15 @@ class Game {
 
   // check vertical, horizontal, and diagonal for wins
   checkWin(target) {
+
     const owner = target.owner;
     let win = false;
 
+
     // vertical wins
-    for (let x = 0; x < this.board.cols - 2; x++) {
+    for (let x = 0; x < this.board.columns - 2; x++) {
       for (let y = 0; y < this.board.rows; y++) {
+        // console.log(this.board.squares[x][y].owner)
         if (
           this.board.squares[x][y].owner === owner &&
           this.board.squares[x + 1][y].owner === owner &&
@@ -80,7 +83,7 @@ class Game {
     }
 
     // horizontal wins
-    for (let x = 0; x < this.board.cols; x++) {
+    for (let x = 0; x < this.board.columns; x++) {
       for (let y = 0; y < this.board.rows - 2; y++) {
         if (
           this.board.squares[x][y].owner === owner &&
@@ -94,25 +97,25 @@ class Game {
       }
     }
 
-    // //diagonal wins
-    // if (
-    //   this.board.squares[0][0].owner === owner &&
-    //   this.board.squares[1][1].owner === owner &&
-    //   this.board.squares[2][2].owner === owner
-    // ) {
-    //   console.log('diagonal 1 win');
-    //   win = true;
-    //   return win;
-    // }
-    // if (
-    //   this.board.squares[0][2].owner === owner &&
-    //   this.board.squares[1][1].owner === owner &&
-    //   this.board.squares[2][0].owner === owner
-    // ) {
-    //   console.log('diagonal 2 win');
-    //   win = true;
-    //   return win;
-    // }
+    //diagonal wins
+    if (
+      this.board.squares[0][0].owner === owner &&
+      this.board.squares[1][1].owner === owner &&
+      this.board.squares[2][2].owner === owner
+    ) {
+      console.log('diagonal 1 win');
+      win = true;
+      return win;
+    }
+    if (
+      this.board.squares[0][2].owner === owner &&
+      this.board.squares[1][1].owner === owner &&
+      this.board.squares[2][0].owner === owner
+    ) {
+      console.log('diagonal 2 win');
+      win = true;
+      return win;
+    }
     return win;
   }
 
@@ -160,7 +163,7 @@ class Game {
 
       //update the game state
       const squareID = e.target.id;
-      const token = this.activePlayer.activeColor;
+      const token = this.activePlayer.activeToken;
       const targetSquare = this.board.findSquare(squareID);
       this.updateGameState(token, targetSquare);
     }
@@ -169,5 +172,6 @@ class Game {
   startGame() {
     this.board.renderHTMLBoard();
     this.playerTurn();
+
   }
 }
