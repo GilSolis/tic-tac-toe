@@ -3,7 +3,7 @@ class Square {
     this.x = x;
     this.y = y;
     this.id = `square-${x}-${y}`;
-    this.color = null;
+    this.token = null;
   }
 
   get htmlSquare() {
@@ -11,10 +11,10 @@ class Square {
   }
 
   get owner() {
-    if (this.color === null) {
+    if (this.token === null) {
       return null;
     } else {
-      return this.color.owner.name;
+      return this.token.owner.name;
     }
   }
 
@@ -29,7 +29,7 @@ class Square {
    * Updates space to reflect a token has been dropped into it.
    * @param {Object} color - The dropped token
    */
-  mark(color) {
-    this.color = color;
+  mark(token) {
+    this.token = token;
   }
 }

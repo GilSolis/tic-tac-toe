@@ -16,15 +16,15 @@ class Game {
   //   return this.ready;
   // }
 
-  // // set ready(val) {
+  // set ready(val) {
   //   this.ready = val;
   // }
 
   // creates 2 players; chooses randomly who starts
   createPlayer() {
     const playerActive = Math.floor(Math.random() * 2) === 0;
-    let player2 = new Player('Blue', 'p2', '#0066FF', !playerActive);
-    let player1 = new Player('Red', 'p1', '#FF0000', playerActive);
+    let player2 = new Player('blue', 'p2', '#0066FF', !playerActive);
+    let player1 = new Player('red', 'p1', '#FF0000', playerActive);
     return [player1, player2];
   }
 
@@ -71,9 +71,8 @@ class Game {
         if (
           this.board.squares[x][y].owner === owner &&
           this.board.squares[x + 1][y].owner === owner &&
-          this.board.squares[x + 2][y] === owner
+          this.board.squares[x + 2][y].owner === owner
         ) {
-          console.log('vertical win');
           win = true;
           return win;
         }
@@ -86,7 +85,7 @@ class Game {
         if (
           this.board.squares[x][y].owner === owner &&
           this.board.squares[x][y + 1].owner === owner &&
-          this.board.squares[x][y + 2] === owner
+          this.board.squares[x][y + 2].owner === owner
         ) {
           console.log('horizontal win');
           win = true;
@@ -117,12 +116,12 @@ class Game {
     return win;
   }
 
-  updateGameState(color, targetSquare) {
+  updateGameState(token, targetSquare) {
     this.turns++;
 
-    // //mark the space and establish the token has been played
-    // targetSquare.mark(color);
-    // color.played = true;
+    //mark the space and establish the token has been played
+    targetSquare.mark(token);
+    // token.played = true;
 
     //check for a win or draw
     const gameOver = this.checkWin(targetSquare);
@@ -161,9 +160,9 @@ class Game {
 
       //update the game state
       const squareID = e.target.id;
-      const color = this.activePlayer.activeColor;
+      const token = this.activePlayer.activeColor;
       const targetSquare = this.board.findSquare(squareID);
-      this.updateGameState(color, targetSquare);
+      this.updateGameState(token, targetSquare);
     }
   }
 
