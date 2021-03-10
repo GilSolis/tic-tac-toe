@@ -34,7 +34,6 @@ class Player {
       const token = new Token(this, i);
       tokens.push(token);
     }
-
     return tokens;
   }
 }

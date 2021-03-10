@@ -12,14 +12,6 @@ class Game {
     return this.players.find((player) => player.active);
   }
 
-  // get ready() {
-  //   return this.ready;
-  // }
-
-  // set ready(val) {
-  //   this.ready = val;
-  // }
-
   // creates 2 players; chooses randomly who starts
   createPlayer() {
     const playerActive = Math.floor(Math.random() * 2) === 0;
@@ -62,15 +54,12 @@ class Game {
 
   // check vertical, horizontal, and diagonal for wins
   checkWin(target) {
-
     const owner = target.owner;
     let win = false;
-
 
     // vertical wins
     for (let x = 0; x < this.board.columns - 2; x++) {
       for (let y = 0; y < this.board.rows; y++) {
-        // console.log(this.board.squares[x][y].owner)
         if (
           this.board.squares[x][y].owner === owner &&
           this.board.squares[x + 1][y].owner === owner &&
@@ -106,7 +95,6 @@ class Game {
       this.board.squares[1][1].owner === owner &&
       this.board.squares[2][2].owner === owner
     ) {
-      console.log('diagonal 1 win');
       win = true;
       return win;
     }
@@ -115,7 +103,6 @@ class Game {
       this.board.squares[1][1].owner === owner &&
       this.board.squares[2][0].owner === owner
     ) {
-      console.log('diagonal 2 win');
       win = true;
       return win;
     }
@@ -127,7 +114,7 @@ class Game {
 
     //mark the space and establish the token has been played
     targetSquare.mark(token);
-    // token.played = true;
+    token.played = true;
 
     //check for a win or draw
     const gameOver = this.checkWin(targetSquare);
@@ -175,6 +162,5 @@ class Game {
   startGame() {
     this.board.renderHTMLBoard();
     this.playerTurn();
-
   }
 }
