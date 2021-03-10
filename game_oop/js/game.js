@@ -76,8 +76,11 @@ class Game {
           this.board.squares[x + 1][y].owner === owner &&
           this.board.squares[x + 2][y].owner === owner
         ) {
+
           win = true;
+          console.log('vertical win')
           return win;
+
         }
       }
     }

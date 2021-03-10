@@ -7,20 +7,27 @@
   height: 50px;
   width: 50px;
   background-color: rgb(204, 201, 201);
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 2rem;
 }
 
-h1,
-.container {
+h1 {
   margin-top: 3%;
   text-align: center;
 }
-
 .container {
-  height: 150px;
+  /* margin: 0 auto; */
+  text-align: center;
 }
+/* .container {
+  height: 150px;
+} */
+section .gameBoard {
+  width: 100%;
 
+  text-align: center;
+  margin: 0 auto;
+}
 .playerOne {
   background-color: #ff0000;
 }
