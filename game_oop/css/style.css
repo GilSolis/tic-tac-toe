@@ -2,18 +2,20 @@
   margin: 0;
   padding: 0;
 } */
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
 
 button#start {
   background-color: white;
   border: rgb(0, 0, 0) 2px solid;
-
-  margin: auto;
   display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px 0;
 }
 
 .square {
@@ -22,9 +24,11 @@ button#start {
   height: 100px;
   width: 100px;
 }
+
 div {
   float: left;
 }
+
 div:nth-child(3n + 1) {
   clear: left;
 }
@@ -37,6 +41,7 @@ h2 {
 .red {
   background-color: #ff0000;
 }
+
 .blue {
   background-color: #0066ff;
 }

@@ -18,6 +18,7 @@ class Square {
     }
   }
 
+  // this creates the squares that together creates the board
   renderHTMLSquare() {
     const square = document.createElement('div');
     square.setAttribute('class', 'square');
@@ -25,10 +26,7 @@ class Square {
     document.querySelector('section.gameBoard').appendChild(square);
   }
 
-  /**
-   * Updates space to reflect a token has been dropped into it.
-   * @param {Object} color - The dropped token
-   */
+  // Updates space to reflect a token has been dropped into it.
   mark(token) {
     this.token = token;
   }

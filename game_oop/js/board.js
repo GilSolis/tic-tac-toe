@@ -1,4 +1,3 @@
-//
 class Board {
   constructor() {
     this.rows = 3;
@@ -21,7 +20,7 @@ class Board {
     return squares;
   }
 
-  // create game board using the spaces array of objects
+  // create game board using the square array of objects
   renderHTMLBoard() {
     for (let column of this.squares) {
       for (let square of column) {
@@ -30,11 +29,7 @@ class Board {
     }
   }
 
-  /**
-   * Get an individual space object
-   * @param {string} squareID - ID of the space requested
-   * @return {object} targetSpace - the space to be marked
-   */
+  // Get an individual space object
   findSquare(squareID) {
     let targetSquare;
     for (let column of this.squares) {

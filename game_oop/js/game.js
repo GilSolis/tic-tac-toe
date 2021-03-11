@@ -36,13 +36,6 @@ class Game {
     }
   }
 
-  // to tally or not to tally
-  // winnerTally(message, result) {
-  //   const winnerTally = document.querySelector(
-  //     `.${this.activePlayer.id}-wins span.win-num`
-  //   );
-  // }
-
   // after 9 turns && no winner, then call a draw
   checkDraw() {
     let draw = false;
@@ -65,10 +58,8 @@ class Game {
           this.board.squares[x + 1][y].owner === owner &&
           this.board.squares[x + 2][y].owner === owner
         ) {
-
           win = true;
           return win;
-
         }
       }
     }
@@ -119,12 +110,14 @@ class Game {
     const draw = this.checkDraw();
     if (gameOver) {
       this.win = true;
-      (`${this.activePlayer.name}` === 'blue') ? document.querySelector('h2').style.color = "blue" : document.querySelector('h2').style.color = "red"
+      `${this.activePlayer.name}` === 'blue'
+        ? (document.querySelector('h2').style.color = 'blue')
+        : (document.querySelector('h2').style.color = 'red');
       document.querySelector(
         'h2'
       ).innerHTML = `${this.activePlayer.name} wins!`;
     } else if (draw) {
-      document.querySelector('h2').style.color = "green"
+      document.querySelector('h2').style.color = 'green';
       document.querySelector('h2').innerHTML = `${"It's a draw!"}`;
     } else {
       this.switchPlayer();
