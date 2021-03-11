@@ -67,7 +67,6 @@ class Game {
         ) {
 
           win = true;
-          console.log('vertical win')
           return win;
 
         }
@@ -82,7 +81,6 @@ class Game {
           this.board.squares[x][y + 1].owner === owner &&
           this.board.squares[x][y + 2].owner === owner
         ) {
-          console.log('horizontal win');
           win = true;
           return win;
         }
@@ -121,6 +119,7 @@ class Game {
     const draw = this.checkDraw();
     if (gameOver) {
       this.win = true;
+      (`${this.activePlayer.name}` === 'blue') ? document.querySelector('h2').style.color = "blue" : document.querySelector('h2').style.color = "red"
       document.querySelector(
         'h2'
       ).innerHTML = `${this.activePlayer.name} wins!`;
