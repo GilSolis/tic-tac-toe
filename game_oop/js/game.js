@@ -124,6 +124,7 @@ class Game {
         'h2'
       ).innerHTML = `${this.activePlayer.name} wins!`;
     } else if (draw) {
+      document.querySelector('h2').style.color = "green"
       document.querySelector('h2').innerHTML = `${"It's a draw!"}`;
     } else {
       this.switchPlayer();
