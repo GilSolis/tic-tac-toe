@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(204, 201, 201);
+  display: inline-block;
+  font-size: 2rem;
+}
+
+h1,
+.container {
+  margin-top: 3%;
+  text-align: center;
+}
+
+.container {
+  height: 150px;
+}
+
+.playerOne {
+  background-color: red;
+}
+
+.playerTwo {
+  background-color: blue;
+}
